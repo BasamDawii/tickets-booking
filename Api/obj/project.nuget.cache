@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "rIEwuZTkZxy7vIOfF5JtyaaFPoUIix1nuxn36Jl97xzS2d/fnZt2PDU+DzT7s+A7hiA7z+iIS9u+wu6LyiLX8Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\basam\\RiderProjects\\tickets-booking\\Api\\Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\basam\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
+    "C:\\Users\\basam\\.nuget\\packages\\fleck\\1.2.0\\fleck.1.2.0.nupkg.sha512",
+    "C:\\Users\\basam\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.0-preview.5.24306.7\\microsoft.extensions.dependencyinjection.abstractions.9.0.0-preview.5.24306.7.nupkg.sha512",
+    "C:\\Users\\basam\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.0-preview.5.24306.7\\microsoft.extensions.logging.abstractions.9.0.0-preview.5.24306.7.nupkg.sha512",
+    "C:\\Users\\basam\\.nuget\\packages\\npgsql\\8.0.3\\npgsql.8.0.3.nupkg.sha512",
+    "C:\\Users\\basam\\.nuget\\packages\\system.reactive\\6.0.0\\system.reactive.6.0.0.nupkg.sha512",
+    "C:\\Users\\basam\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
+    "C:\\Users\\basam\\.nuget\\packages\\uldahlalex.websocket.boilerplate\\1.6.0\\uldahlalex.websocket.boilerplate.1.6.0.nupkg.sha512",
+    "C:\\Users\\basam\\.nuget\\packages\\websocket.client\\5.0.0\\websocket.client.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
