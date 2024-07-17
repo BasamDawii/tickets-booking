@@ -25,13 +25,19 @@ server.Start(socket =>
         allSockets.Add(socket);
         SendPriceUpdate(socket);
     };
+    
+    
     socket.OnClose = () =>
     {
         Console.WriteLine("Close!");
         allSockets.Remove(socket);
     };
-    socket.OnMessage = message =>
+    
+    
+    socket.OnMessage =  message  =>
     {
+        app.InvokeClientEventHandler(clientEventHandlers, socket, message);
+        
         Console.WriteLine(message);
         if (message == "buy")
         {
@@ -76,5 +82,7 @@ void SendPriceUpdate(IWebSocketConnection socket)
     var currentPrice = CalculateCurrentPrice();
     socket.Send($"Current Price: {currentPrice:C}");
 }
+
+
 
 app.Run();
