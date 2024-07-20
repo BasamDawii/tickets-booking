@@ -18,7 +18,7 @@ namespace tickets_booking.EventHandlers
         {
             try
             {
-                // Implement your logic here
+                
                 Console.WriteLine($"Handling buy tickets for topic: {dto.Topic}");
                 await socket.Send(JsonSerializer.Serialize(new ServerSendsInfoToClient
                 {
