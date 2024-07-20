@@ -2,6 +2,7 @@ using System.Text.Json;
 using tickets_booking.Dtos;
 using Fleck;
 using lib;
+using Service;
 
 namespace tickets_booking.EventHandlers
 {
@@ -9,17 +10,30 @@ namespace tickets_booking.EventHandlers
     {
         private readonly ILogger<ClientWantsToBuyTicketsHandler> _logger;
 
-        public ClientWantsToBuyTicketsHandler(ILogger<ClientWantsToBuyTicketsHandler> logger)
+        private readonly TicketService _ticketService;
+
+        public ClientWantsToBuyTicketsHandler(ILogger<ClientWantsToBuyTicketsHandler> logger, TicketService ticketService)
         {
             _logger = logger;
+            _ticketService = ticketService;
         }
 
         public override async Task Handle(ClientWantsToBuyTicketsDto dto, IWebSocketConnection socket)
         {
             try
             {
-                
-                Console.WriteLine($"Handling buy tickets for topic: {dto.Topic}");
+                _ticketService.BuyTicket();
+
+                var currentPriceUpdate = _ticketService.SendPriceUpdate();
+                foreach (var connection in ConnectionManager.allSockets)
+                {
+                    if (connection.IsAvailable)
+                    {
+                        Console.WriteLine($"Sending price update to client: {currentPriceUpdate}");
+                        await connection.Send(currentPriceUpdate);
+                    }
+                }
+
                 await socket.Send(JsonSerializer.Serialize(new ServerSendsInfoToClient
                 {
                     Message = "Ticket purchase processed successfully"

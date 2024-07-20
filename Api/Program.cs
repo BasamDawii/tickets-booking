@@ -1,93 +1,45 @@
 using System.Reflection;
 using Fleck;
 using lib;
+using Service;
+using tickets_booking;
 
-public static class Startup
-{
-    public static void Main(string[] args)
-    {
-        Statup(args);
-        Console.ReadLine();
-    }
 
-    public static void Statup(string[] args)
-    {
     var builder = WebApplication.CreateBuilder(args);
     var clientEventHandlers = builder.FindAndInjectClientEventHandlers(Assembly.GetExecutingAssembly());
+    builder.Services.AddSingleton<TicketService>();
     var app = builder.Build();
-    
-    int totalTickets = 100; 
-    int ticketsSold = 0;
-    double basePrice = 50.0; 
-    double priceIncreasePerTicket = 2.0; 
-    List<IWebSocketConnection> allSockets = new List<IWebSocketConnection>();
+
     var server = new WebSocketServer("ws://0.0.0.0:8181");
 
     server.Start(socket =>
     {
-        socket.OnOpen = () =>
+        socket.OnOpen = async () =>
         {
             Console.WriteLine("Open!");
-            allSockets.Add(socket);
-            SendPriceUpdate(socket);
+            ConnectionManager.allSockets.Add(socket);
+            var ticketService = app.Services.GetRequiredService<TicketService>();
+            var currentPriceUpdate = ticketService.SendPriceUpdate();
+            await socket.Send(currentPriceUpdate);
         };
-    
-    
+
         socket.OnClose = () =>
         {
             Console.WriteLine("Close!");
-            allSockets.Remove(socket);
+            ConnectionManager.allSockets.Remove(socket);
         };
-        
-        
-        socket.OnMessage =  message  =>
+
+        socket.OnMessage = async message =>
         {
-            app.InvokeClientEventHandler(clientEventHandlers, socket, message);
+            await app.InvokeClientEventHandler(clientEventHandlers, socket, message);
             Console.WriteLine(message);
-            
-        if (message == "buy")
-        {
-            BuyTicket();
-            BroadcastPriceUpdate();
-        }
         };
     });
 
     Console.WriteLine("Press any key to exit...");
     Console.ReadKey();
-        
-        
-    void BuyTicket()
-    { 
-        if (ticketsSold < totalTickets)
-        {
-            ticketsSold++;
-            Console.WriteLine($"Ticket sold! Total sold: {ticketsSold}");
-        }
-    }
+
+    app.Run();
+    
 
 
-    void BroadcastPriceUpdate()
-    {
-        var currentPrice = CalculateCurrentPrice();
-        foreach (var socket in allSockets)
-        {
-            socket.Send($"Current Price: {currentPrice:C}");
-        }
-    }
-
-
-    double CalculateCurrentPrice()
-    {
-        return basePrice + (ticketsSold * priceIncreasePerTicket);
-    }
-
-
-    void SendPriceUpdate(IWebSocketConnection socket)
-    {
-        var currentPrice = CalculateCurrentPrice();
-        socket.Send($"Current Price: {currentPrice:C}");
-    }
-        app.Run();
-    }
-}

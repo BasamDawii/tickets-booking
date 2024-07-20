@@ -30,3 +30,7 @@ C:\Users\basam\RiderProjects\tickets-booking\Api\obj\Debug\net8.0\refint\Api.dll
 C:\Users\basam\RiderProjects\tickets-booking\Api\obj\Debug\net8.0\Api.pdb
 C:\Users\basam\RiderProjects\tickets-booking\Api\obj\Debug\net8.0\Api.genruntimeconfig.cache
 C:\Users\basam\RiderProjects\tickets-booking\Api\obj\Debug\net8.0\ref\Api.dll
+C:\Users\basam\RiderProjects\tickets-booking\Api\bin\Debug\net8.0\Core.dll
+C:\Users\basam\RiderProjects\tickets-booking\Api\bin\Debug\net8.0\Service.dll
+C:\Users\basam\RiderProjects\tickets-booking\Api\bin\Debug\net8.0\Service.pdb
+C:\Users\basam\RiderProjects\tickets-booking\Api\bin\Debug\net8.0\Core.pdb

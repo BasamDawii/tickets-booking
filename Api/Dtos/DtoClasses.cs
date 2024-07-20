@@ -10,7 +10,7 @@ public class ServerSendsErrorMessageDto : BaseDto
 
 public class ClientWantsToBuyTicketsDto : BaseDto
 {
-    public string Topic { get; set; }
+    public string BuyComand { get; set; }
 }
  
 
@@ -18,3 +18,4 @@ public class ServerSendsInfoToClient : BaseDto
 {
     public string Message { get; set; }
 }
+

@@ -9,6 +9,7 @@
       "Api/1.0.0": {
         "dependencies": {
           "Fleck": "1.2.0",
+          "Service": "1.0.0",
           "uldahlalex.websocket.boilerplate": "1.6.0"
         },
         "runtime": {
@@ -56,6 +57,19 @@
             "assemblyVersion": "5.0.0.0",
             "fileVersion": "5.0.0.0"
           }
+        }
+      },
+      "Core/1.0.0": {
+        "runtime": {
+          "Core.dll": {}
+        }
+      },
+      "Service/1.0.0": {
+        "dependencies": {
+          "Core": "1.0.0"
+        },
+        "runtime": {
+          "Service.dll": {}
         }
       }
     }
@@ -107,6 +121,16 @@
       "sha512": "sha512-6CG+9GPj3VsqlKBR5tD/36SF/XTdu4CLMIgLsgrKMhQHvPX01Tfu7kkWNZg/vONadChhbZsNw6KnpYddnwmfxA==",
       "path": "websocket.client/5.0.0",
       "hashPath": "websocket.client.5.0.0.nupkg.sha512"
+    },
+    "Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Service/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

@@ -92,6 +92,29 @@
             "related": ".xml"
           }
         }
+      },
+      "Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Core.dll": {}
+        }
+      },
+      "Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Service.dll": {}
+        }
       }
     }
   },
@@ -269,11 +292,22 @@
         "websocket.client.5.0.0.nupkg.sha512",
         "websocket.client.nuspec"
       ]
+    },
+    "Core/1.0.0": {
+      "type": "project",
+      "path": "../Core/Core.csproj",
+      "msbuildProject": "../Core/Core.csproj"
+    },
+    "Service/1.0.0": {
+      "type": "project",
+      "path": "../Service/Service.csproj",
+      "msbuildProject": "../Service/Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "Fleck >= 1.2.0",
+      "Service >= 1.0.0",
       "uldahlalex.websocket.boilerplate >= 1.6.0"
     ]
   },
@@ -301,7 +335,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\basam\\RiderProjects\\tickets-booking\\Service\\Service.csproj": {
+              "projectPath": "C:\\Users\\basam\\RiderProjects\\tickets-booking\\Service\\Service.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
