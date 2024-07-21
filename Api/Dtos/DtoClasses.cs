@@ -1,21 +1,22 @@
-namespace tickets_booking.Dtos;
-
 using lib;
 
- 
-public class ServerSendsErrorMessageDto : BaseDto
+
+namespace Api.Dtos;
+
+
+public class ClientWantsToSignInWithNameDto : BaseDto
 {
-    public string ErrorMessage { get; set; }
+    public string Name { get; set; }
 }
 
-public class ClientWantsToBuyTicketsDto : BaseDto
-{
-    public string BuyComand { get; set; }
-}
- 
 
-public class ServerSendsInfoToClient : BaseDto
+public class ClientWantsToBuyTicketDto : BaseDto
 {
-    public string Message { get; set; }
+    public string UserName { get; set; }
 }
 
+
+public class ClientWantsToRefundTicketDto : BaseDto
+{
+    public string UserName { get; set; }
+}

@@ -8,29 +8,29 @@ using lib;
 namespace Api.EventHandlers;
 
 
-public class ClientWantsToBuyTicket : BaseEventHandler<ClientWantsToBuyTicketDto>
+public class ClientWantsToRefundTicket : BaseEventHandler<ClientWantsToRefundTicketDto>
 {
     private readonly ITicketService _ticketService;
     private readonly IWebSocketConnectionManager _connectionManager;
 
 
-    public ClientWantsToBuyTicket(ITicketService ticketService, IWebSocketConnectionManager connectionManager)
+    public ClientWantsToRefundTicket(ITicketService ticketService, IWebSocketConnectionManager connectionManager)
     {
         _ticketService = ticketService;
         _connectionManager = connectionManager;
     }
 
 
-    public override Task Handle(ClientWantsToBuyTicketDto dto, IWebSocketConnection socket)
+    public override Task Handle(ClientWantsToRefundTicketDto dto, IWebSocketConnection socket)
     {
-        if (_ticketService.BuyTicket(dto.UserName))
+        if (_ticketService.RefundTicket(dto.UserName))
         {
             var currentPrice = _ticketService.GetCurrentPrice();
             _connectionManager.BroadcastMessage($"Current Price: {currentPrice:C}");
         }
         else
         {
-            socket.Send("No more tickets available.");
+            socket.Send("No tickets to refund.");
         }
         return Task.CompletedTask;
     }
