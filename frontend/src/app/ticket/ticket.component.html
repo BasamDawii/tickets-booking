@@ -1,0 +1,9 @@
+<div id="actions">
+  <ion-button (click)="buyTicket()">Buy Ticket</ion-button>
+  <ion-button (click)="refundTicket()">Refund Ticket</ion-button>
+  <div class="ticket">
+    <div>Welcome to the Event!</div>
+    <div>Your exclusive ticket</div>
+    <div id="price">Current Price: {{ currentPrice.toFixed(2) }}<span id="price-arrow">{{ priceArrow }}</span></div>
+  </div>
+</div>
