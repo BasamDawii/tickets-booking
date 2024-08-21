@@ -16,23 +16,7 @@ public class WebSocketConnectionManager : IWebSocketConnectionManager
             _users[user.Name] = user;
         }
     }
-
-
-    public void RemoveUser(string userName)
-    {
-        if (_users.ContainsKey(userName))
-        {
-            _users.Remove(userName);
-        }
-    }
-
-
-    public User GetUser(string userName)
-    {
-        return _users.ContainsKey(userName) ? _users[userName] : null;
-    }
-
-
+    
     public void BroadcastMessage(string message)
     {
         foreach (var user in _users.Values)
